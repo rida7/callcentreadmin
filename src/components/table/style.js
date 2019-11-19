@@ -69,7 +69,7 @@ padding:20px!important;
 
 
 .linkCsv{
-padding-left: 1550px;
+padding-left: 1400px;
 }
 
 .pagination-status{
