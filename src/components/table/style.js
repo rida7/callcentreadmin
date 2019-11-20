@@ -42,7 +42,7 @@ padding:20px!important;
       padding:10px;
 }
 
- div {
+ .header >div {
         flex: 1;
 
  }
@@ -66,10 +66,29 @@ padding:20px!important;
 
       }
     }
+.header2 {
+      background: grey;
+      color:#fff;
+display:flex;
+justify-content:space-between;
+      line-height: 1.5;
+      font-weight: 600;
+      font-size: 15px;
+       cursor: pointer;
+      div {
+        cursor: pointer;
 
-
+      }
+    }
+.search >input{
+    padding: 12px;
+}
+.search{
+margin:15px;
+}
 .linkCsv{
-padding-left: 1000px;
+padding-left:0px;
+margin-bottom:10px;
 }
 
 .pagination-status{
@@ -89,6 +108,7 @@ padding-left: 1000px;
 .btn-info{
 padding:20px;
 width:100px;
+ margin: 10px;
 font-size:12px;
 }
     `}</style>

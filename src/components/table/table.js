@@ -25,7 +25,14 @@ export default (props) => {
         });
     },[]);
 
+    const [frontEndTeamBackup, setFrontEndTeamBackup] = useState([]);
+    const searchHandler = (value) => {
+        if (frontEndTeamBackup.length === 0) {
+            setFrontEndTeamBackup([...frontEndTeam]);
+        }
+        setFrontEndTeam([...frontEndTeamBackup.filter(frontEndTeam => frontEndTeam.firstName.toLowerCase().indexOf(value.toLowerCase()) !== -1)]);
 
+    };
 
     const sortBy = (x) => {
         if(!nameSortType || nameSortType==="DESC"){
@@ -40,7 +47,13 @@ export default (props) => {
 
     return (
         <>
-        <CSVLink className="linkCsv" data={frontEndTeam}><button type="button" className="btn btn-info">Export file</button></CSVLink>
+        <div className="header2">
+            <div className="search"> SEARCH <input type="text" onChange={event => {
+                searchHandler(event.target.value)
+            }}/></div>
+            <div><CSVLink className="linkCsv" data={frontEndTeam}><button type="button" className="btn btn-info">Export file</button></CSVLink></div>
+        </div>
+
 
             <div className="header">
             <div  onClick={()=>sortBy('firstName')}>{nameSortType&&nameSortType==="ASC"?"First Name":"First Name"}</div>
