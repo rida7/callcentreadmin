@@ -3,13 +3,30 @@ import Style from './style'
 import { CSVLink, CSVDownload } from "react-csv";
 import axios from 'axios';
 import { TablePagination } from 'react-pagination-table';
-
+import {apiPath} from '../../config'
 
 
 
 const arraySort = require('array-sort');
 
-export default (props) => {
+export default () => {
+
+    useEffect(()=> {
+        let token = localStorage.getItem("token");
+        if(token){
+            let header={
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            };
+            axios.get(apiPath+"/api/team",header).then(res=>{
+                setFrontEndTeam(res.data);
+
+            })
+        }
+
+    } );
+
 
 
 
@@ -18,7 +35,7 @@ export default (props) => {
 
 
     useEffect(()=>{
-        axios.get(' https://json-team-crud.herokuapp.com/api/team').then(res=>{
+        axios.get(apiPath+'/api/team').then(res=>{
             console.log("response", res.data);
             setFrontEndTeam(res.data)
 
@@ -63,18 +80,18 @@ export default (props) => {
             <div onClick={() => sortBy('postBody')}>{nameSortType&&nameSortType==="ASC"?"post Body":"post Body"}</div>
             </div>
 
+        { frontEndTeam && frontEndTeam.length !== 0 &&
+        <TablePagination
 
-                <TablePagination
+            // headers={}
 
-                    // headers={}
+            data={frontEndTeam}
+            columns="firstName.lastName.email.phone.postBody"
+            perPageItemCount={11}
+            totalCount={frontEndTeam && frontEndTeam.length ? parseInt(frontEndTeam.length / 1) : 1}
 
-                    data={frontEndTeam}
-                    columns="firstName.lastName.email.phone.postBody"
-                    perPageItemCount={11}
-                    totalCount={100}
-
-                />
-
+        />
+        }
 
            {/*</div>*/}
 

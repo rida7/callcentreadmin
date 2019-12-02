@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Table from '../components/table/consumer';
+import Login from '../../components/login/login';
 
 export default () => {
 
     return (
         <>
-<Table/>
+        <Login/>
         </>
 
     );
